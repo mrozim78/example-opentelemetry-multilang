@@ -1,0 +1,45 @@
+@page
+@model OpenTelemetry.Example.Dotnet.Frontend.Pages.Checkout.New
+<div class="row">
+        <h2>Checkout</h2>
+        <!-- Tag helpers https://docs.microsoft.com/en-US/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-5.0 -->
+
+    <form class="form" method="post">
+         <div class="form-group">
+            <label asp-for="@Model.Checkout.Name">Name</label>
+            <span class="text-danger" asp-validation-for="@Model.Checkout.Name"></span>
+            <input class="form-control" asp-for="@Model.Checkout.Name" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Checkout.Email">Email</label>
+            <span class="text-danger" asp-validation-for="@Model.Checkout.Email"></span>
+            <input class="form-control" asp-for="@Model.Checkout.Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Checkout.Address">Address</label>
+            <span class="text-danger" asp-validation-for="@Model.Checkout.Address"></span>
+            <input class="form-control" asp-for="@Model.Checkout.Address" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Checkout.Town">Town</label>
+            <span class="text-danger" asp-validation-for="@Model.Checkout.Town"></span>
+            <input class="form-control" asp-for="@Model.Checkout.Town" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Checkout.PostalCode">Postal Code</label>
+            <span class="text-danger" asp-validation-for="@Model.Checkout.PostalCode"></span>
+            <input class="form-control" asp-for="@Model.Checkout.PostalCode" />        
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Checkout.CreditCard">Credit Card</label>
+            <span class="text-danger" asp-validation-for="@Model.Checkout.CreditCard"></span>
+            <input class="form-control" asp-for="@Model.Checkout.CreditCard" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Checkout.CreditCardDate">Expiry Date</label>
+            <span class="text-danger" asp-validation-for="@Model.Checkout.CreditCardDate"></span>
+            <input class="form-control" asp-for="@Model.Checkout.CreditCardDate" />
+        </div>
+        <button type="submit" class="btn btn-primary ml-4 w-50">SUBMIT ORDER</button>
+    </form>  
+</div>

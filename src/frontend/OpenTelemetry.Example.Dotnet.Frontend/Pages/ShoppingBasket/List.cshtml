@@ -1,0 +1,91 @@
+@page
+@using OpenTelemetry.Example.Dotnet.Frontend.Models.View
+@model OpenTelemetry.Example.Dotnet.Frontend.Pages.ShoppingBasket.List
+
+<table class="table">
+    <thead>
+    <tr class="columnHeader">
+        <th>EVENT NAME</th>
+        <th>DATE</th>
+        <th>PRICE PER TICKET</th>
+        <th>QUANTITY</th>
+        <th>TOTAL</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (BasketLineViewModel line in Model!.BasketLineViewModels)
+    {
+        <tr>
+            <td>@line.EventName</td>
+            <td>@line.Date.DateTime.ToShortDateString()</td>
+            <td class="bold">$@line.Price</td>
+            <td>
+                <form method="post" asp-page-handler="UpdateLine">
+                    <input type="hidden" asp-for="@Model.BasketLineUpdate.LineId" value="@line.LineId" />
+                    <select class="w-25" asp-for="@Model.BasketLineUpdate.TicketAmount">
+                        @if (line.Quantity == 1)
+                        {
+                            <option selected="selected" value="1">1</option>
+                        }
+                        else
+                        {
+                            <option value="1">1</option>
+                        }
+
+                        @if (line.Quantity == 2)
+                        {
+                            <option selected="selected" value="2">2</option>
+                        }
+                        else
+                        {
+                            <option value="2">2</option>
+                        }
+
+                        @if (line.Quantity == 3)
+                        {
+                            <option selected="selected" value="3">3</option>
+                        }
+                        else
+                        {
+                            <option value="3">3</option>
+                        }
+                        @if (line.Quantity == 4)
+                        {
+                            <option selected="selected" value="4">4</option>
+                        }
+                        else
+                        {
+                            <option value="4">4</option>
+                        }
+                        @if (line.Quantity == 5)
+                        {
+                            <option selected="selected" value="5">5</option>
+                        }
+                        else
+                        {
+                            <option value="5">5</option>
+                        }
+                        </select>
+                    <button type="submit" class="filterButton">Update</button>
+                </form>
+            </td>
+            <td class="bold big">$@(line.Price * line.Quantity) </td>
+            <td>
+                <a asp-page-handler="RemoveLine" asp-route-lineId="@line.LineId">Remove</a>
+            </td>
+        </tr>
+    }
+        <tr>
+            <td colspan="4">
+                <a asp-page="/EventCatalog/List"> Back to event catalog</a>
+            </td>
+            <td class="bold big">$@Model.BasketLineViewModels!.Sum(bl => bl.Price * bl.Quantity)</td>
+        </tr>
+        
+    </tbody>
+</table>
+@if (Model!.BasketLineViewModels.Any())
+{
+    <a class="nav-link text-dark" asp-area="" asp-page="/Checkout/New">CHECKOUT</a>
+}

@@ -1,0 +1,21 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: app
+  mail:
+    host: smtp
+    port: 1025
+otel:
+  exporter:
+    otlp:
+      endpoint: "http://otel-collector:4317"
+      logs:
+        protocol: grpc
+      traces:
+        protocol: grpc
+      metrics:
+        protocol: grpc
+  service:
+    name: ordering

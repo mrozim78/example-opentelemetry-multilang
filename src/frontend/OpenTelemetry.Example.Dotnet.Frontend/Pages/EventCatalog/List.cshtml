@@ -1,0 +1,50 @@
+@page
+@model OpenTelemetry.Example.Dotnet.Frontend.Pages.EventCatalog.List
+
+<div class="row">
+    @if (Model is null || Model.ListModel is null || Model.ListModel.Events is null)
+    {
+        <text>No events were found.</text>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+            <tr class="columnHeader">
+                <th></th>
+                <th>DATE</th>
+                <th>NAME</th>
+                <th>ARTIST</th>
+                <th>PRICE</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var ev in Model.ListModel.Events)
+            {
+                <tr>
+                    <td>
+                        <img class="artistPic" src="@ev!.ImageUrl" alt="Artist pic"/>
+                    </td>
+                    <td>
+                        @ev.Date.ToShortDateString()
+                    </td>
+                    <td>
+                        @ev.Name
+                    </td>
+                    <td>
+                        @ev.Artist
+                    </td>
+                    <td class="bold big">
+                        $@ev.Price
+                    </td>
+                    <td>
+                        <a class="btn-primary" type="button" asp-page="/EventCatalog/Detail" asp-route-eventId="@ev.EventId">PURCHASE DETAILS</a>
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    }
+</div>
